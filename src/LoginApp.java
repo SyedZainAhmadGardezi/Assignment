@@ -55,7 +55,7 @@ public class LoginApp extends JFrame {
             }
         }
     }
-
+    //Zain
     private String authenticateUser(String email) {
         String userName = null;
         try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
