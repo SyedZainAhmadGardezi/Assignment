@@ -1,0 +1,35 @@
+name: RUN - Java Unit Tests
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # Step 1: Check out the repository code
+      - name: Clone repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Java environment
+      - name: Configure Java
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      # Step 3: Build the project
+      - name: Maven Build
+        run: mvn verify --batch-mode
+
+      # Step 4: Execute unit tests
+      - name: Execute Tests
+        run: mvn test --batch-mode
